@@ -7,6 +7,9 @@ export enum posicao {
 
 export class Jogador extends Profissional{
 
+
+    private _golsFeitos: number = 0
+
     constructor(
         _nomePessoa: string,
         _idade: number,
@@ -24,6 +27,9 @@ export class Jogador extends Profissional{
         return this._numeroCamisa
     }
 
+    public get golsFeitos() : number {
+        return this._golsFeitos
+    }
     
     public get posicao() : posicao {
 
