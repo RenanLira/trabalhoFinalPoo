@@ -13,13 +13,18 @@ export class Jogador extends Profissional{
     constructor(
         _nomePessoa: string,
         _idade: number,
-        // _equipePertencente: Equipe,
         private _numeroCamisa: number,
         private _posicao: posicao,
 
 
     ){
         super(_nomePessoa, _idade,)
+    }
+
+
+
+    public golJogador(){
+        this._golsFeitos = this._golsFeitos + 1
     }
 
     

@@ -1,5 +1,6 @@
 import { Jogador } from "./Jogador";
 import { Profissional } from "./Profissional";
+import {Campeonato} from "./Campeonato";
 
 
 
@@ -15,14 +16,30 @@ export class Equipe {
     ){}
 
 
-    public golMarcado(idEquipeAdversaria: string, jogador?: Jogador) : number {
+    /*public golMarcado(idEquipeAdversaria: string, jogador?: Jogador) : number {
+        
+        let equipeGolSofrido
+        let golJogador
+        this._golsPro = this._golsPro + 1
+        jogador?.golJogador()
+        equipeGolSofrido = busca
+
 
         // adicionar gol para o jogador e contabilizar com o total de gols da equipe
         // adicionar golContra para a equipe adversaria
         // em caso de gol contra apenas não sera contabilizado gol para nenhum jogador
 
         return this._golsPro
+    }*/
+
+    public golLevado():void{
+        this._golsContra = this._golsContra + 1
     }
+
+    public golFeito():void{
+        this._golsPro = this._golsPro + 1
+    }
+
 
     // metodos gets
     
@@ -35,6 +52,16 @@ export class Equipe {
 
         return this._id
     }
-    
 
+    public get participantes(){
+        return this._participantes
+    }
+
+    public get golsPro(){
+        return this._golsPro
+    }
+    
+    public get golsContra(){
+        return this._golsContra
+    }
 }

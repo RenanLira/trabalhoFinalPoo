@@ -1,5 +1,5 @@
 
-export class Profissional {
+export abstract class Profissional {
 
     constructor(
         private _nomePessoa: string,

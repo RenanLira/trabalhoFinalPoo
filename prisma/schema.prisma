@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Equipe {
+  id            String         @id @default(uuid())
+  nome          String
+  participantes Profissional[]
+  golsPro       Int?           @default(0)
+  golsContra    Int?           @default(0)
+  Campeonato    Campeonato?    @relation(fields: [campeonatoId], references: [id])
+  campeonatoId  String?
+}
+
+model Profissional {
+  id String @id @default(uuid())
+
+  treinador      Treinador? @relation("treinadorP", fields: [profissionalId], references: [id])
+  jogador        Jogador?   @relation("jogadorP", fields: [profissionalId], references: [id])
+  profissionalId String
+
+  Equipe   Equipe @relation(fields: [id], references: [id])
+}
+
+model Treinador {
+  id    String @id @default(uuid())
+  nome  String
+  idade Int
+
+  tatica String
+
+  treinadores Profissional[] @relation("treinadorP")
+}
+
+model Jogador {
+  id    String @id @default(uuid())
+  nome  String
+  idade Int
+
+  gols         Int
+  numeroCamisa Int
+  posicao      String
+
+  jogadores Profissional[] @relation("jogadorP")
+}
+
+model Campeonato {
+  id      String   @id @default(uuid())
+  Equipes Equipe[]
+}
